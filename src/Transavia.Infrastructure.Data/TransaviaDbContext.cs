@@ -14,11 +14,11 @@ namespace Transavia.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AirportEntity>().ToTable("Airports").HasKey(p => p.Id);
-            modelBuilder.Entity<AirportEntity>().HasAlternateKey(a => a.Iata);
-            modelBuilder.Entity<AirportEntity>().HasAlternateKey(a => a.Name);
-            modelBuilder.Entity<AirportEntity>().Property(x => x.Lat).IsRequired();
-            modelBuilder.Entity<AirportEntity>().Property(x => x.Lon).IsRequired();
-            modelBuilder.Entity<AirportEntity>().Property(x => x.Size).IsRequired(false);
+            modelBuilder.Entity<AirportEntity>().Property(a => a.Iata).IsRequired();
+            modelBuilder.Entity<AirportEntity>().Property(a => a.Name).IsRequired(false);
+            modelBuilder.Entity<AirportEntity>().Property(x => x.Lat).IsRequired(false);
+            modelBuilder.Entity<AirportEntity>().Property(x => x.Lon).IsRequired(false);
+            modelBuilder.Entity<AirportEntity>().HasOne(x => x.Size);
             modelBuilder.Entity<AirportEntity>().HasOne(x => x.Country);
             modelBuilder.Entity<AirportEntity>().HasOne(x => x.Status);
             modelBuilder.Entity<AirportEntity>().HasOne(x => x.Type);
@@ -30,6 +30,7 @@ namespace Transavia.Infrastructure.Data
 
             modelBuilder.Entity<ContinentEntity>().ToTable("Continents").HasKey(p => p.Id);
             modelBuilder.Entity<ContinentEntity>().HasAlternateKey(a => a.Code);
+            modelBuilder.Entity<ContinentEntity>().Property(a => a.Name).IsRequired();
 
             modelBuilder.Entity<AirportTypeEntity>().ToTable("AirportTypes").HasKey(p => p.Id);
             modelBuilder.Entity<AirportTypeEntity>().HasAlternateKey(a => a.TypeName);

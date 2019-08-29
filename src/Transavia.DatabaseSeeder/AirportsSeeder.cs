@@ -7,12 +7,12 @@ using Transavia.Infrastructure.Data.Entities;
 
 namespace Transavia.DatabaseSeeder
 {
-    public class EuropeanAirportsSeeder
+    public class AirportsSeeder
     {
         private readonly HttpFeedDataProvider _airportsProvider;
         private readonly TransaviaDbContext _ctx;
 
-        public EuropeanAirportsSeeder(HttpFeedDataProvider airportsProvider, TransaviaDbContext ctx)
+        public AirportsSeeder(HttpFeedDataProvider airportsProvider, TransaviaDbContext ctx)
         {
             _airportsProvider = airportsProvider;
             _ctx = ctx;
@@ -29,6 +29,8 @@ namespace Transavia.DatabaseSeeder
                 {
                     await _ctx.Airports.AddAsync(airport, token);
                 }
+
+                await _ctx.SaveChangesAsync(token);
             }
         }
     }

@@ -7,6 +7,8 @@ namespace Transavia.Infrastructure.Data.Entities
     {
         public string Code { get; set; }
 
+        public string Name { get; set; }
+
         public IEnumerable<CountryEntity> Countries { get; set; }
     }
 }

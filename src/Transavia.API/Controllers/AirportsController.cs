@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Transavia.Application.Queries.GetAirports;
 
 namespace Transavia.API.Controllers
 {
@@ -10,10 +12,17 @@ namespace Transavia.API.Controllers
     [ApiController]
     public class AirportsController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get([FromQuery] string countryCode = null)
+        private readonly IMediator _mediator;
+
+        public AirportsController(IMediator mediator)
         {
-            return new string[] { "value1", "value2" };
+            _mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<Airport>> Get(string countryCode = null, int skipCount = 0, int takeCount = 8)
+        {
+            return await _mediator.Send(new GetAirportsQuery());
         }
 
         [HttpPost]

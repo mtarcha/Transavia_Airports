@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Transavia.Infrastructure.Data;
 
 namespace Transavia.API
 {
@@ -14,7 +17,21 @@ namespace Transavia.API
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            var host = CreateWebHostBuilder(args).Build();
+
+            EnsureDatabaseCreated(host).Wait();
+
+            host.Run();
+        }
+
+        private static async Task EnsureDatabaseCreated(IWebHost host)
+        {
+            var scopeFactory = host.Services.GetService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetService<TransaviaDbContext>();
+                await dbContext.Database.EnsureCreatedAsync(CancellationToken.None);
+            }
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
