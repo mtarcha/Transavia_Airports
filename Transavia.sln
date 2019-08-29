@@ -5,9 +5,7 @@ VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Web.MVC", "src\Transavia.Web.MVC\Transavia.Web.MVC.csproj", "{457B9F0B-A373-4A07-8231-CEAACE4E4408}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.Domain.Common.UnitTests", "tests\Unit\Transavia.Domain.Common.UnitTests\Transavia.Domain.Common.UnitTests.csproj", "{10C67D5A-094B-4A1B-9500-29B79C21AC9D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.Domain.Common", "src\Transavia.Domain.Common\Transavia.Domain.Common.csproj", "{64D6597A-7F31-4F65-9E5D-200B5F674494}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Domain.Common.UnitTests", "tests\Unit\Transavia.Domain.Common.UnitTests\Transavia.Domain.Common.UnitTests.csproj", "{10C67D5A-094B-4A1B-9500-29B79C21AC9D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2661B073-5C12-4388-B159-A257B5F3F43E}"
 EndProject
@@ -15,17 +13,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit", "Unit", "{5D9E510C-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{170A6BA3-68C2-4F13-B20A-1E1205ADDE1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.Domain", "src\Transavia.Domain\Transavia.Domain.csproj", "{40027C29-2E0B-4A58-A817-99886BFDE0D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Infrastructure.Data", "src\Transavia.Infrastructure.Data\Transavia.Infrastructure.Data.csproj", "{2AD99AAC-4FA4-4C63-B9DE-1C09B62B5105}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.Infrastructure.DataPersistence", "src\Transavia.Infrastructure.DataPersistence\Transavia.Infrastructure.DataPersistence.csproj", "{2AD99AAC-4FA4-4C63-B9DE-1C09B62B5105}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Application.Commands", "src\Transavia.Application.Commands\Transavia.Application.Commands.csproj", "{5F386053-4A2F-4033-A0E2-9155C01F5B95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.Application.Commands", "src\Transavia.Application.Commands\Transavia.Application.Commands.csproj", "{5F386053-4A2F-4033-A0E2-9155C01F5B95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Application.Queries", "src\Transavia.Application.Queries\Transavia.Application.Queries.csproj", "{FD1108C7-3D4A-4540-B3BE-50CFE14CB41C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.Application.Queries", "src\Transavia.Application.Queries\Transavia.Application.Queries.csproj", "{FD1108C7-3D4A-4540-B3BE-50CFE14CB41C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.API", "src\Transavia.API\Transavia.API.csproj", "{6D96D4D3-72C1-4891-8DBF-F9C150A1D483}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.API", "src\Transavia.API\Transavia.API.csproj", "{6D96D4D3-72C1-4891-8DBF-F9C150A1D483}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Infrastructure.Data.IntegrationTests", "tests\Integration\Transavia.Infrastructure.Data.IntegrationTests\Transavia.Infrastructure.Data.IntegrationTests.csproj", "{CA4DBF36-2632-46FE-95AD-CC6232F361ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.Infrastructure.Common", "src\Transavia.Infrastructure.Common\Transavia.Infrastructure.Common.csproj", "{D8682B76-F0F4-4BAE-A536-AE5144DA94E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.Application.Queries.Sql", "src\Transavia.Application.Queries.Sql\Transavia.Application.Queries.Sql.csproj", "{3EA516E3-B9B9-4819-AE7C-708482B78205}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,14 +39,6 @@ Global
 		{10C67D5A-094B-4A1B-9500-29B79C21AC9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10C67D5A-094B-4A1B-9500-29B79C21AC9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10C67D5A-094B-4A1B-9500-29B79C21AC9D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{64D6597A-7F31-4F65-9E5D-200B5F674494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64D6597A-7F31-4F65-9E5D-200B5F674494}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64D6597A-7F31-4F65-9E5D-200B5F674494}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64D6597A-7F31-4F65-9E5D-200B5F674494}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40027C29-2E0B-4A58-A817-99886BFDE0D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40027C29-2E0B-4A58-A817-99886BFDE0D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40027C29-2E0B-4A58-A817-99886BFDE0D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40027C29-2E0B-4A58-A817-99886BFDE0D4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2AD99AAC-4FA4-4C63-B9DE-1C09B62B5105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2AD99AAC-4FA4-4C63-B9DE-1C09B62B5105}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AD99AAC-4FA4-4C63-B9DE-1C09B62B5105}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,10 +55,14 @@ Global
 		{6D96D4D3-72C1-4891-8DBF-F9C150A1D483}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D96D4D3-72C1-4891-8DBF-F9C150A1D483}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D96D4D3-72C1-4891-8DBF-F9C150A1D483}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8682B76-F0F4-4BAE-A536-AE5144DA94E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8682B76-F0F4-4BAE-A536-AE5144DA94E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8682B76-F0F4-4BAE-A536-AE5144DA94E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8682B76-F0F4-4BAE-A536-AE5144DA94E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA4DBF36-2632-46FE-95AD-CC6232F361ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA4DBF36-2632-46FE-95AD-CC6232F361ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA4DBF36-2632-46FE-95AD-CC6232F361ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA4DBF36-2632-46FE-95AD-CC6232F361ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EA516E3-B9B9-4819-AE7C-708482B78205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EA516E3-B9B9-4819-AE7C-708482B78205}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EA516E3-B9B9-4819-AE7C-708482B78205}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EA516E3-B9B9-4819-AE7C-708482B78205}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +71,7 @@ Global
 		{10C67D5A-094B-4A1B-9500-29B79C21AC9D} = {5D9E510C-2D12-4485-AE0F-B4C70F804A0B}
 		{5D9E510C-2D12-4485-AE0F-B4C70F804A0B} = {2661B073-5C12-4388-B159-A257B5F3F43E}
 		{170A6BA3-68C2-4F13-B20A-1E1205ADDE1B} = {2661B073-5C12-4388-B159-A257B5F3F43E}
+		{CA4DBF36-2632-46FE-95AD-CC6232F361ED} = {170A6BA3-68C2-4F13-B20A-1E1205ADDE1B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1BE138B5-27E8-400B-BA5D-B2D93CC8AF77}

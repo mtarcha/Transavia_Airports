@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="7.0.0" />
+    <PackageReference Include="Dapper" Version="1.60.6" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Transavia.Infrastructure.Data\Transavia.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\Transavia.Application.Queries\Transavia.Application.Queries.csproj" />
   </ItemGroup>
 
 </Project>
