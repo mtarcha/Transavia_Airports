@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  transavia.web.mvc:
+    image: ${DOCKER_REGISTRY-}transaviawebmvc
+    build:
+      context: .
+      dockerfile: src/Transavia.Web.MVC/Dockerfile
+
+  transavia.api:
+    image: ${DOCKER_REGISTRY-}transaviaapi
+    build:
+      context: .
+      dockerfile: src/Transavia.API/Dockerfile

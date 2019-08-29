@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  transavia.web.mvc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development   
+      - AirportsApiUrl=http://transavia.api/api/
+    ports:
+      - "8888:80"    
+      
+  transavia.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__TransaviaConnectionString=Server=sql;Database=TransaviaDB;User Id=sa;Password=123asdQ!     
+    ports:
+      - "7777:80"
+      
+  sql:
+    image: microsoft/mssql-server-linux:latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=123asdQ!
+    ports:
+      - "5433:1433"

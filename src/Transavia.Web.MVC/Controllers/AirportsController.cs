@@ -27,7 +27,7 @@ namespace Transavia.Web.MVC.Controllers
             {
                 TotalAirportsCount = 100,
                 AirportsOnPage = airports.Result.GetContent(),
-                Pagination = new PaginationViewModel(100, page),
+                Pagination = new PaginationViewModel(10, page),
                 Country = country
             };
 

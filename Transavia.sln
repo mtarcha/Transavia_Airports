@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Application.Queri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.DatabaseSeeder", "src\Transavia.DatabaseSeeder\Transavia.DatabaseSeeder.csproj", "{CBD1143D-7B7A-45A1-ADB2-21296EAE180D}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{643600D6-E0E2-4288-BA3C-DACE7114B5C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{CBD1143D-7B7A-45A1-ADB2-21296EAE180D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBD1143D-7B7A-45A1-ADB2-21296EAE180D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBD1143D-7B7A-45A1-ADB2-21296EAE180D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{643600D6-E0E2-4288-BA3C-DACE7114B5C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{643600D6-E0E2-4288-BA3C-DACE7114B5C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{643600D6-E0E2-4288-BA3C-DACE7114B5C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{643600D6-E0E2-4288-BA3C-DACE7114B5C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

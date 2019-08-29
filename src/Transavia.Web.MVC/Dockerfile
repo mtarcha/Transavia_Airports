@@ -5,10 +5,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
-COPY ["Transavia.Web.MVC/Transavia.Web.MVC.csproj", "Transavia.Web.MVC/"]
-RUN dotnet restore "Transavia.Web.MVC/Transavia.Web.MVC.csproj"
+COPY ["src/Transavia.Web.MVC/Transavia.Web.MVC.csproj", "src/Transavia.Web.MVC/"]
+RUN dotnet restore "src/Transavia.Web.MVC/Transavia.Web.MVC.csproj"
 COPY . .
-WORKDIR "/src/Transavia.Web.MVC"
+WORKDIR "/src/src/Transavia.Web.MVC"
 RUN dotnet build "Transavia.Web.MVC.csproj" -c Release -o /app
 
 FROM build AS publish
