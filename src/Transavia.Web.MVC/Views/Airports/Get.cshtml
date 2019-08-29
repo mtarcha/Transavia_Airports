@@ -1,0 +1,78 @@
+﻿@using Page = Transavia.Web.MVC.ViewModels.PageViewModel
+
+@model Transavia.Web.MVC.ViewModels.AirportsViewModel
+
+<div style="display: -ms-inline-flexbox;">
+    <p>
+        <h2>
+            Airports <span class="badge badge-pill badge-light" style="font-size: 50%; vertical-align: top">@Model.TotalAirportsCount</span>
+
+            <a class="btn btn-success" style="float: right;" href=@Url.Action("Create", "Airports")>New Airport</a>
+        </h2>
+    </p>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var airport in Model.AirportsOnPage)
+        {
+        <tr>
+            <td>(@airport.Name)</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@{
+var vm = @Model;
+var pagination = @Model.Pagination;
+
+ <!--TODO: Make ViewComponent for pagination -->
+    <nav>
+        @* Previos button *@
+        <ul class="pagination justify-content-center">
+            <li class="page-item @TrySetDisabled(pagination.Previous)">
+                <a class="page-link" href=@Url.Action("Get",  new { country = @vm.Country, page = @pagination.Previous.Index }) aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+
+            @* Page buttons *@
+            @foreach (var page in pagination.Pages)
+        {
+            <!-- TODO: Implement correct disable for active page button to avoid naviagtion to it self!-->
+            <li class="page-item @TrySetActive(page)">
+                @Html.ActionLink(page.Index.ToString(), "Get", "Airports", new { country = @vm.Country, page = page.Index }, new { @class="page-link" })
+                @*<a class="page-link" href=@Url.Action("Index",  new { pattern = @vm.Pattern, page = @page.Index })>@{return page.Index;}</a>*@
+            </li>
+        }
+
+            @* Next button *@
+            <li class="page-item @TrySetDisabled(pagination.Next)">
+                <a class="page-link" href=@Url.Action("Get",  new { country = @vm.Country, page = @pagination.Next.Index }) aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+}
+<!-- Html helpers -->
+
+@functions
+{
+    public string TrySetActive(Page page)
+    {
+        return page.IsActive ? "active" : string.Empty;
+    }
+
+    public string TrySetDisabled(Page page)
+    {
+        return !page.IsActive ? "disabled" : string.Empty;
+    }
+}
