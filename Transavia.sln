@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.API", "src\Transa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Infrastructure.Data.IntegrationTests", "tests\Integration\Transavia.Infrastructure.Data.IntegrationTests\Transavia.Infrastructure.Data.IntegrationTests.csproj", "{CA4DBF36-2632-46FE-95AD-CC6232F361ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.Application.Queries.Sql", "src\Transavia.Application.Queries.Sql\Transavia.Application.Queries.Sql.csproj", "{3EA516E3-B9B9-4819-AE7C-708482B78205}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Application.Queries.Sql", "src\Transavia.Application.Queries.Sql\Transavia.Application.Queries.Sql.csproj", "{3EA516E3-B9B9-4819-AE7C-708482B78205}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.DatabaseSeeder", "src\Transavia.DatabaseSeeder\Transavia.DatabaseSeeder.csproj", "{CBD1143D-7B7A-45A1-ADB2-21296EAE180D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{3EA516E3-B9B9-4819-AE7C-708482B78205}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EA516E3-B9B9-4819-AE7C-708482B78205}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EA516E3-B9B9-4819-AE7C-708482B78205}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBD1143D-7B7A-45A1-ADB2-21296EAE180D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBD1143D-7B7A-45A1-ADB2-21296EAE180D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBD1143D-7B7A-45A1-ADB2-21296EAE180D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBD1143D-7B7A-45A1-ADB2-21296EAE180D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

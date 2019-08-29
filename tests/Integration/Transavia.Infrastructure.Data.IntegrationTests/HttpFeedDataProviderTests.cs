@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading;
 using NSubstitute;
 using NUnit.Framework;
+using Transavia.DatabaseSeeder;
 
 namespace Transavia.Infrastructure.Data.IntegrationTests
 {

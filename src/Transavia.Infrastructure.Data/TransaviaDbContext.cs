@@ -25,6 +25,7 @@ namespace Transavia.Infrastructure.Data
 
             modelBuilder.Entity<CountryEntity>().ToTable("Countries").HasKey(p => p.Id);
             modelBuilder.Entity<CountryEntity>().HasAlternateKey(a => a.Iso);
+            modelBuilder.Entity<CountryEntity>().Property(x => x.Name).IsRequired();
             modelBuilder.Entity<CountryEntity>().HasOne(a => a.Continent).WithMany(x => x.Countries);
 
             modelBuilder.Entity<ContinentEntity>().ToTable("Continents").HasKey(p => p.Id);
@@ -37,7 +38,9 @@ namespace Transavia.Infrastructure.Data
             modelBuilder.Entity<SizeEntity>().HasAlternateKey(a => a.SizeName);
 
             modelBuilder.Entity<StatusEntity>().ToTable("Statuses").HasKey(p => p.Id);
-           
+            modelBuilder.Entity<StatusEntity>().HasAlternateKey(x => x.Code);
+            modelBuilder.Entity<StatusEntity>().Property(x => x.Name).IsRequired();
+
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Transavia.Infrastructure.Data.Entities;
 
-namespace Transavia.Infrastructure.Data
+namespace Transavia.DatabaseSeeder
 {
-    public sealed class HttpFeedDataProvider : IDataProvider<AirportEntity>, IDisposable
+    public sealed class HttpFeedDataProvider : IDisposable
     {
         private readonly string _uri;
         private readonly HttpClient _httpClient;
