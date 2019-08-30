@@ -10,6 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.12" />
@@ -18,8 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Clients\" />
-    <Folder Include="wwwroot\lib\" />
+    <None Include="wwwroot\lib\css\CustomStyle.css" />
   </ItemGroup>
 
 </Project>

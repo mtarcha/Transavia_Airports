@@ -3,7 +3,7 @@ using Transavia.Web.MVC.Models;
 
 namespace Transavia.Web.MVC.ViewModels
 {
-    public class AirportsViewModel
+    public class SearchAirportsViewModel
     {
         public int TotalFoundCount { get; set; }
 
@@ -11,6 +11,8 @@ namespace Transavia.Web.MVC.ViewModels
 
         public PaginationViewModel Pagination { get; set; }
 
-        public string Country { get; set; }
+        public CountryViewModel SelectedCountry { get; set; }
+
+        public IEnumerable<CountryViewModel> SupportedCountries { get; set; }
     }
 }

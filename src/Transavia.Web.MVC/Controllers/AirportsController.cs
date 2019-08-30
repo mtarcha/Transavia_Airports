@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Transavia.Web.MVC.Clients;
 using Transavia.Web.MVC.ViewModels;
@@ -10,11 +13,15 @@ namespace Transavia.Web.MVC.Controllers
     {
         private const int AirportsOnPage = 30;
 
-        private readonly IAirportsClient _client;
+        private readonly IMapper _mapper;
+        private readonly IAirportsClient _airportsClient;
+        private readonly ICountriesClient _countriesClient;
 
-        public AirportsController(IAirportsClient client)
+        public AirportsController(IMapper mapper, IAirportsClient airportsClient, ICountriesClient countriesClient)
         {
-            _client = client;
+            _mapper = mapper;
+            _airportsClient = airportsClient;
+            _countriesClient = countriesClient;
         }
 
         [HttpGet]
@@ -25,7 +32,7 @@ namespace Transavia.Web.MVC.Controllers
                 return BadRequest($"Invalid page '{page}'! Should be 1 or more.");
             }
 
-            var airportsResult = _client.Get(country, (page - 1) * AirportsOnPage, AirportsOnPage).Result.GetContent();
+            var airportsResult = _airportsClient.Get(country, (page - 1) * AirportsOnPage, AirportsOnPage).Result.GetContent();
 
             var totalPages = (int) Math.Ceiling((double) airportsResult.TotalFound / AirportsOnPage);
 
@@ -42,11 +49,16 @@ namespace Transavia.Web.MVC.Controllers
                 }
             }
 
-            var vm = new AirportsViewModel
+            var supportedCountries = _mapper.Map<IEnumerable<CountryViewModel>>(_countriesClient.GetSupportedCountries().Result.GetContent()).ToList();
+            supportedCountries.Insert(0, new CountryViewModel {Name = "All"});
+
+            var vm = new SearchAirportsViewModel
             {
                 TotalFoundCount = airportsResult.TotalFound,
                 AirportsOnPage = airportsResult.Airports,
                 Pagination = new PaginationViewModel(totalPages, page),
+                SelectedCountry = supportedCountries.Single(x => x.Id == country),
+                SupportedCountries = supportedCountries
             };
 
             return View(vm);

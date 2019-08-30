@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,8 +19,20 @@ namespace Transavia.Web.MVC
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfiles(new Profile[]
+                {
+                    new Utilities.AutoMapper(),
+                });
+            });
+
+            var mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
             var apiUrl = _configuration["AirportsApiUrl"];
             services.AddTransient(x => RestClient.For<IAirportsClient>(apiUrl));
+            services.AddTransient(x => RestClient.For<ICountriesClient>(apiUrl));
             services.AddMvc();
         }
 
@@ -30,7 +43,7 @@ namespace Transavia.Web.MVC
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+            app.UseStaticFiles();
             app.UseMvc(configuration =>
             {
                 configuration.MapRoute("Default", "{controller=Airports}/{action=Get}/{id?}");

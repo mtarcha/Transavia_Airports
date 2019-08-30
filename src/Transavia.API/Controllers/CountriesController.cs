@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Transavia.API.ViewModels;
-using Transavia.Application.Commands.AddAirport;
-using Transavia.Application.Queries.GetAirports;
 using Transavia.Application.Queries.GetSupportedCountries;
 
 namespace Transavia.API.Controllers

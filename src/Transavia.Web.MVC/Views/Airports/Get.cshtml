@@ -1,13 +1,25 @@
 ﻿@using Page = Transavia.Web.MVC.ViewModels.PageViewModel
 
-@model Transavia.Web.MVC.ViewModels.AirportsViewModel
+@model Transavia.Web.MVC.ViewModels.SearchAirportsViewModel
 
 <div style="display: -ms-inline-flexbox;">
     <p>
-        <h3>
+        <h3 class="flex-fill">
             Airports <span class="badge badge-pill badge-light" style="font-size: 50%; vertical-align: top">@Model.TotalFoundCount</span>
-
-            <a class="btn btn-success" style="float: right;" href=@Url.Action("Create", "Airports")>New Airport</a>
+            <span class="float-right">
+                <span class="dropdown">
+                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Country (@Model.SelectedCountry.Name)
+                    </button>
+                    <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
+                        @foreach (var country in Model.SupportedCountries)
+                        {
+                            <a class="dropdown-item" href="@Url.Action("Get", new {country = @country.Id, page = @Model.Pagination.CurrenPageNumber})">@country.Name</a>
+                        }
+                    </div>
+                </span>
+                <a class="btn btn-success" href=@Url.Action("Create", "Airports")>Add Airport</a>
+            </span>
         </h3>
     </p>
 </div>
@@ -51,7 +63,7 @@ var pagination = @Model.Pagination;
         @* Previos button *@
         <ul class="pagination justify-content-center">
             <li class="page-item @TrySetDisabled(pagination.Previous)">
-                <a class="page-link" href=@Url.Action("Get",  new { country = @vm.Country, page = @pagination.Previous.Index }) aria-label="Previous">
+                <a class="page-link" href=@Url.Action("Get",  new { country = @vm.SelectedCountry.Id, page = @pagination.Previous.Index }) aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Previous</span>
                 </a>
@@ -63,7 +75,7 @@ var pagination = @Model.Pagination;
                 @if (index - 1 < pagination.Pages.Length)
                  {
                      <li class="page-item @TrySetActive(pagination.Pages[index - 1])">
-                         @Html.ActionLink(index.ToString(), "Get", "Airports", new { country = @vm.Country, page = index }, new { @class="page-link" })
+                         @Html.ActionLink(index.ToString(), "Get", "Airports", new { country = @vm.SelectedCountry.Id, page = index }, new { @class="page-link" })
                          @*<a class="page-link" href=@Url.Action("Index",  new { pattern = @vm.Pattern, page = @page.Index })>@{return page.Index;}</a>*@
                      </li>
                  }
@@ -71,7 +83,7 @@ var pagination = @Model.Pagination;
 
             @* Next button *@
             <li class="page-item @TrySetDisabled(pagination.Next)">
-                <a class="page-link" href=@Url.Action("Get",  new { country = @vm.Country, page = @pagination.Next.Index }) aria-label="Next">
+                <a class="page-link" href=@Url.Action("Get",  new { country = @vm.SelectedCountry.Id, page = @pagination.Next.Index }) aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
                 </a>
