@@ -4,8 +4,8 @@ namespace Transavia.Application.Queries.GetSupportedAirportTypes
 {
     public class AirportType
     {
-        public Guid TypeId { get; set; }
+        public Guid Id { get; set; }
 
-        public string TypeName { get; set; }
+        public string Name { get; set; }
     }
 }

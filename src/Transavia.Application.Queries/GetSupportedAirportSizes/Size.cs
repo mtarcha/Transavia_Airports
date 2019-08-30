@@ -4,8 +4,8 @@ namespace Transavia.Application.Queries.GetSupportedAirportSizes
 {
     public class Size
     {
-        public Guid SizeId { get; set; }
+        public Guid Id { get; set; }
 
-        public string SizeName { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Transavia.Infrastructure.Data.Entities;
+﻿using Transavia.Infrastructure.Data.Entities;
 
 namespace Transavia.Infrastructure.Data.Repositories
 {

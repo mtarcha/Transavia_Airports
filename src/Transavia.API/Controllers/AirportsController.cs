@@ -1,22 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Transavia.API.ViewModels;
+using Transavia.Application.Commands.AddAirport;
 using Transavia.Application.Queries.GetAirports;
 
 namespace Transavia.API.Controllers
 {
-    [Route("api/airports")]
     [ApiController]
+    [Route("api/airports")]
     public class AirportsController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public AirportsController(IMediator mediator)
+        public AirportsController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -31,8 +34,17 @@ namespace Transavia.API.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> AddAirport(AddAirportViewModel viewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var command = _mapper.Map<AddAirportCommand>(viewModel);
+            var result = await _mediator.Send(command);
+
+            return Ok(result.CreatedAirportId);
         }
     }
 }

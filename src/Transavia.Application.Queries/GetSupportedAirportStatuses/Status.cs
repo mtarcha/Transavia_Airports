@@ -1,7 +1,11 @@
-﻿namespace Transavia.Application.Queries.GetSupportedAirportStatuses
+﻿using System;
+
+namespace Transavia.Application.Queries.GetSupportedAirportStatuses
 {
     public class Status
     {
-        public int StatusId { get; set; }
+        public Guid Id { get; set; }
+
+        public string Name { get; set; }
     }
 }

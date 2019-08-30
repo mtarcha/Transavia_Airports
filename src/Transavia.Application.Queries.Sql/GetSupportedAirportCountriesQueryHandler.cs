@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Dapper;
 using Transavia.Application.Queries.GetSupportedCountries;
 
 namespace Transavia.Application.Queries.Sql
@@ -14,9 +15,12 @@ namespace Transavia.Application.Queries.Sql
             _connectionFactory = connectionFactory;
         }
 
-        public Task<IEnumerable<Country>> Handle(GetSupportedCountriesQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Country>> Handle(GetSupportedCountriesQuery request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            using (var connection = _connectionFactory.Create())
+            {
+                return await connection.QueryAsync<Country>("select Id, Name from dbo.Countries");
+            }
         }
     }
 }

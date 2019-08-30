@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Dapper;
 using Transavia.Application.Queries.GetSupportedAirportStatuses;
 
 namespace Transavia.Application.Queries.Sql
@@ -14,9 +15,12 @@ namespace Transavia.Application.Queries.Sql
             _connectionFactory = connectionFactory;
         }
 
-        public Task<IEnumerable<Status>> Handle(GetSupportedAirportStatusesQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Status>> Handle(GetSupportedAirportStatusesQuery request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            using (var connection = _connectionFactory.Create())
+            {
+                return await connection.QueryAsync<Status>("select Id, Name from dbo.Statuses");
+            }
         }
     }
 }
