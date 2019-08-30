@@ -5,7 +5,7 @@ namespace Transavia.Web.MVC.ViewModels
 {
     public class AirportsViewModel
     {
-        public int TotalAirportsCount { get; set; }
+        public int TotalFoundCount { get; set; }
 
         public IEnumerable<Airport> AirportsOnPage { get; set; }
 

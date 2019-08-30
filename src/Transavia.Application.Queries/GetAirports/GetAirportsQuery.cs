@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Transavia.Application.Queries.GetAirports
 {
-    public class GetAirportsQuery : IRequest<IEnumerable<Airport>>
+    public class GetAirportsQuery : IRequest<GetAirportsResult>
     {
         public Guid? CountryId { get; set; }
 

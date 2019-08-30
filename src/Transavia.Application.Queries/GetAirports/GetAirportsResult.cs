@@ -1,5 +1,14 @@
-﻿namespace Transavia.Application.Queries.GetAirports
+﻿using System.Collections.Generic;
+
+namespace Transavia.Application.Queries.GetAirports
 {
+    public class GetAirportsResult
+    {
+        public int TotalFound{ get; set; }
+
+        public IEnumerable<Airport> Airports { get; set; }
+    }
+
     public sealed class Airport
     {
         public string Iata { get; set; }

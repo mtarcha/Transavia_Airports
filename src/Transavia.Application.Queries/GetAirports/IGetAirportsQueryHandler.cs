@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Transavia.Application.Queries.GetAirports
 {
-    public interface IGetAirportsQueryHandler : IRequestHandler<GetAirportsQuery, IEnumerable<Airport>>
+    public interface IGetAirportsQueryHandler : IRequestHandler<GetAirportsQuery, GetAirportsResult>
     {
     }
 }

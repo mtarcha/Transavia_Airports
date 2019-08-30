@@ -5,7 +5,7 @@
 <div style="display: -ms-inline-flexbox;">
     <p>
         <h3>
-            Airports <span class="badge badge-pill badge-light" style="font-size: 50%; vertical-align: top">@Model.TotalAirportsCount</span>
+            Airports <span class="badge badge-pill badge-light" style="font-size: 50%; vertical-align: top">@Model.TotalFoundCount</span>
 
             <a class="btn btn-success" style="float: right;" href=@Url.Action("Create", "Airports")>New Airport</a>
         </h3>
@@ -14,14 +14,30 @@
 <table class="table table-hover">
     <thead>
         <tr>
+            <th scope="col">Iata</th>
             <th scope="col">Name</th>
+            <th scope="col">Lon</th>
+            <th scope="col">Lat</th>
+            <th scope="col">Status</th>
+            <th scope="col">Country</th>
+            <th scope="col">Continent</th>
+            <th scope="col">Type</th>
+            <th scope="col">Size</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var airport in Model.AirportsOnPage)
         {
         <tr>
+            <td>@airport.Iata</td>
             <td>@airport.Name</td>
+            <td>@airport.Lon</td>
+            <td>@airport.Lat</td>
+            <td>@airport.Status</td>
+            <td>@airport.Country</td>
+            <td>@airport.Continent</td>
+            <td>@airport.Type</td>
+            <td>@airport.Size</td>
         </tr>
         }
     </tbody>
@@ -31,7 +47,6 @@
 var vm = @Model;
 var pagination = @Model.Pagination;
 
- <!--TODO: Make ViewComponent for pagination -->
     <nav>
         @* Previos button *@
         <ul class="pagination justify-content-center">
@@ -43,14 +58,16 @@ var pagination = @Model.Pagination;
             </li>
 
             @* Page buttons *@
-            @foreach (var page in pagination.Pages)
-        {
-            <!-- TODO: Implement correct disable for active page button to avoid naviagtion to it self!-->
-            <li class="page-item @TrySetActive(page)">
-                @Html.ActionLink(page.Index.ToString(), "Get", "Airports", new { country = @vm.Country, page = page.Index }, new { @class="page-link" })
-                @*<a class="page-link" href=@Url.Action("Index",  new { pattern = @vm.Pattern, page = @page.Index })>@{return page.Index;}</a>*@
-            </li>
-        }
+            @for (var index = pagination.Previous.Index; index < pagination.Previous.Index + 10; index++)
+            {
+                @if (index - 1 < pagination.Pages.Length)
+                 {
+                     <li class="page-item @TrySetActive(pagination.Pages[index - 1])">
+                         @Html.ActionLink(index.ToString(), "Get", "Airports", new { country = @vm.Country, page = index }, new { @class="page-link" })
+                         @*<a class="page-link" href=@Url.Action("Index",  new { pattern = @vm.Pattern, page = @page.Index })>@{return page.Index;}</a>*@
+                     </li>
+                 }
+            }
 
             @* Next button *@
             <li class="page-item @TrySetDisabled(pagination.Next)">

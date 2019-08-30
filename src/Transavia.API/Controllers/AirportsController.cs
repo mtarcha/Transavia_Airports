@@ -20,9 +20,14 @@ namespace Transavia.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Airport>> Get(string countryCode = null, int skipCount = 0, int takeCount = 8)
+        public async Task<GetAirportsResult> Get(Guid? country, int skipCount, int takeCount)
         {
-            return await _mediator.Send(new GetAirportsQuery());
+            return await _mediator.Send(new GetAirportsQuery
+            {
+                CountryId = country,
+                SkipCount = skipCount,
+                TakeCount = takeCount
+            });
         }
 
         [HttpPost]

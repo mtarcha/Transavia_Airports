@@ -23,7 +23,7 @@ namespace Transavia.Web.MVC.ViewModels
         
         public PageViewModel Next { get; private set; }
 
-        public IEnumerable<PageViewModel> Pages { get; private set; }
+        public PageViewModel[] Pages { get; private set; }
 
         public PageViewModel Previous { get; private set; }
 
@@ -31,7 +31,7 @@ namespace Transavia.Web.MVC.ViewModels
         {
             var pages = Enumerable.Range(1, _totalPagesCount);
 
-            Pages = pages.Select(x => new PageViewModel(x, x == _page, x != _page));
+            Pages = pages.Select(x => new PageViewModel(x, x == _page, x != _page)).ToArray();
             Next = new PageViewModel(_page + 1 > _totalPagesCount ? _totalPagesCount : _page + 1, false, _page + 1 <= _totalPagesCount);
             Previous = new PageViewModel(_page - 1 < 1 ? 1 : _page - 1, false, _page - 1 >= 1);
         }
