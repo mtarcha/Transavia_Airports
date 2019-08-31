@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using Transavia.API.Middlewares;
-using Transavia.API.Utilities;
 using Transavia.Application.Queries.Sql;
 using Transavia.Infrastructure.Cache;
 using Transavia.Infrastructure.Cache.Redis;

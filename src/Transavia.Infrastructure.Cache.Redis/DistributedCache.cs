@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using EasyCaching.Core;
-using StackExchange.Redis;
 
 namespace Transavia.Infrastructure.Cache.Redis
 {
@@ -16,18 +15,18 @@ namespace Transavia.Infrastructure.Cache.Redis
             _provider = provider;
         }
 
-        public async Task<T> GetAsync<T>(string key, CancellationToken token = default)
+        public async Task<T> GetAsync<T>(string key, CancellationToken token)
         {
             var cacheItem = await _provider.GetAsync<T>(KeyPrefix + key);
             return cacheItem.Value;
         }
 
-        public async Task SetAsync<T>(string key, T value, TimeSpan absoluteExpiration, CancellationToken token = default)
+        public async Task SetAsync<T>(string key, T value, TimeSpan absoluteExpiration, CancellationToken token)
         {
             await _provider.SetAsync(KeyPrefix + key, value, absoluteExpiration);
         }
 
-        public async Task ClearCache(CancellationToken token = default)
+        public async Task ClearCache(CancellationToken token)
         {
             await _provider.RemoveByPrefixAsync(KeyPrefix);
         }

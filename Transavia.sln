@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Application.Queri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.API", "src\Transavia.API\Transavia.API.csproj", "{6D96D4D3-72C1-4891-8DBF-F9C150A1D483}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Infrastructure.Data.IntegrationTests", "tests\Integration\Transavia.Infrastructure.Data.IntegrationTests\Transavia.Infrastructure.Data.IntegrationTests.csproj", "{CA4DBF36-2632-46FE-95AD-CC6232F361ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Infrastructure.IntegrationTests", "tests\Integration\Transavia.Infrastructure.IntegrationTests\Transavia.Infrastructure.IntegrationTests.csproj", "{CA4DBF36-2632-46FE-95AD-CC6232F361ED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Application.Queries.Sql", "src\Transavia.Application.Queries.Sql\Transavia.Application.Queries.Sql.csproj", "{3EA516E3-B9B9-4819-AE7C-708482B78205}"
 EndProject
@@ -32,6 +32,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.Infrastructure.Cache", "src\Transavia.Infrastructure.Cache\Transavia.Infrastructure.Cache.csproj", "{B28C94AB-707D-4D84-9214-13534C781F02}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.Infrastructure.Cache.Redis", "src\Transavia.Infrastructure.Cache.Redis\Transavia.Infrastructure.Cache.Redis.csproj", "{90301A1A-F578-41E0-8261-95D0D69CCBA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.Infrastructure", "src\Transavia.Infrastructure\Transavia.Infrastructure.csproj", "{27F53050-8B13-4ECA-871D-03463B48E7DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{90301A1A-F578-41E0-8261-95D0D69CCBA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90301A1A-F578-41E0-8261-95D0D69CCBA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90301A1A-F578-41E0-8261-95D0D69CCBA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27F53050-8B13-4ECA-871D-03463B48E7DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27F53050-8B13-4ECA-871D-03463B48E7DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27F53050-8B13-4ECA-871D-03463B48E7DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27F53050-8B13-4ECA-871D-03463B48E7DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

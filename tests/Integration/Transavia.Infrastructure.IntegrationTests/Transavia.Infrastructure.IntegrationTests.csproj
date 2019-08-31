@@ -14,8 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Transavia.DatabaseSeeder\Transavia.DatabaseSeeder.csproj" />
-    <ProjectReference Include="..\..\..\src\Transavia.Infrastructure.Data\Transavia.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\..\..\src\Transavia.Infrastructure\Transavia.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

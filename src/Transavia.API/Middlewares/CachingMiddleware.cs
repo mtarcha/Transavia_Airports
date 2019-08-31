@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
@@ -23,7 +24,7 @@ namespace Transavia.API.Middlewares
             if (context.Request.Method == "GET")
             {
                 var key = context.Request.Path + context.Request.QueryString;
-                var cached = await _distributedCache.GetAsync<byte[]>(key);
+                var cached = await _distributedCache.GetAsync<byte[]>(key, CancellationToken.None);
 
                 if (cached != null)
                 {
@@ -47,7 +48,7 @@ namespace Transavia.API.Middlewares
 
                             await _next(context);
 
-                            await _distributedCache.SetAsync(key, memStream.GetBuffer(), TimeSpan.FromMinutes(5));
+                            await _distributedCache.SetAsync(key, memStream.GetBuffer(), TimeSpan.FromMinutes(5), CancellationToken.None);
                             
                             memStream.Position = 0;
                             await memStream.CopyToAsync(originalBody);

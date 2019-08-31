@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Transavia.Infrastructure;
 using Transavia.Infrastructure.Data;
 using Utility.CommandLine;
 
@@ -25,20 +28,20 @@ namespace Transavia.DatabaseSeeder
             var optionsBuilder = new DbContextOptionsBuilder<TransaviaDbContext>();
             optionsBuilder.UseSqlServer(ConnectionString);
 
-            using (var feed = new HttpFeedDataProvider(Feed))
+            using (var feed = new HttpFeedDataProvider<AirportData>(Feed, JsonConvert.DeserializeObject<List<AirportData>>))
             using (var dbContext = new TransaviaDbContext(optionsBuilder.Options))
             {
                 dbContext.Database.EnsureCreated();
-                ClearDatabae(dbContext);
+                ClearDatabase(dbContext);
 
-                var seeder = new AirportsSeeder(feed, dbContext);
-                seeder.SeedAsync(x => x.Country.Continent.Code == "EU", CancellationToken.None).Wait();
+                var seeder = new AirportsSeeder(dbContext, feed);
+                seeder.SeedAsync(x => x.continent == "EU", CancellationToken.None).Wait();
             }
 
             Console.WriteLine("Done");
         }
         
-        private static void ClearDatabae(TransaviaDbContext dbContext)
+        private static void ClearDatabase(TransaviaDbContext dbContext)
         {
             dbContext.Database.ExecuteSqlCommand(@"
                     -- disable all constraints

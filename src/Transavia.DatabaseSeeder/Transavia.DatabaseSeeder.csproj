@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Transavia.Infrastructure.Data\Transavia.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\Transavia.Infrastructure\Transavia.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

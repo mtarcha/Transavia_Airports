@@ -6,10 +6,10 @@ namespace Transavia.Infrastructure.Cache
 {
     public interface IDistributedCache
     {
-        Task<T> GetAsync<T>(string key, CancellationToken token = default);
+        Task<T> GetAsync<T>(string key, CancellationToken token);
 
-        Task SetAsync<T>(string key, T value, TimeSpan absoluteExpiration, CancellationToken token = default);
+        Task SetAsync<T>(string key, T value, TimeSpan absoluteExpiration, CancellationToken token);
 
-        Task ClearCache(CancellationToken token = default);
+        Task ClearCache(CancellationToken token);
     }
 }
