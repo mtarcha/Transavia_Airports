@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 using Transavia.Application.Queries.Sql;
 using Transavia.Infrastructure.Data;
 
@@ -48,23 +49,23 @@ namespace Transavia.API
                 //.AddFluentValidation(x => x.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()))
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            //services
-            //    .AddSwaggerGen(c =>
-            //    {
-            //        c.DescribeAllEnumsAsStrings();
+            services
+                .AddSwaggerGen(c =>
+                {
+                    c.DescribeAllEnumsAsStrings();
 
-            //        c.SwaggerDoc("v1", new Info
-            //        {
-            //            Version = "v1",
-            //            Title = "Home Library Api",
-            //            Contact = new Contact
-            //            {
-            //                Name = "Home Library",
-            //                Email = "mtarcha@outlook.com",
-            //                Url = "https://github.com/mtarcha/Library"
-            //            }
-            //        });
-            //    });
+                    c.SwaggerDoc("v1", new Info
+                    {
+                        Version = "v1",
+                        Title = "Transavia Api",
+                        Contact = new Contact
+                        {
+                            Name = "Transavia",
+                            Email = "mtarcha@outlook.com",
+                            Url = "https://github.com/mtarcha/Transavia_Airports"
+                        }
+                    });
+                });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -79,8 +80,13 @@ namespace Transavia.API
             {
                 app.UseHsts();
             }
-
+            
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Transavia Api V1");
+            });
         }
     }
 }

@@ -105,7 +105,7 @@ namespace Transavia.Web.MVC.Controllers
 
             var id = result.GetContent();
 
-            return RedirectToAction("Get");
+            return RedirectToAction("Search");
         }
     }
 }

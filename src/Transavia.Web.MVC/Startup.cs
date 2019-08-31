@@ -49,7 +49,7 @@ namespace Transavia.Web.MVC
             app.UseStaticFiles();
             app.UseMvc(configuration =>
             {
-                configuration.MapRoute("Default", "{controller=Airports}/{action=Get}/{id?}");
+                configuration.MapRoute("Default", "{controller=Airports}/{action=Search}/{id?}");
             });
         }
     }
