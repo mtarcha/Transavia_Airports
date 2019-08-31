@@ -11,6 +11,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="EasyCaching.Redis" Version="0.6.1" />
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjectionFixed" Version="5.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -23,11 +24,9 @@
     <ProjectReference Include="..\Transavia.Application.Commands\Transavia.Application.Commands.csproj" />
     <ProjectReference Include="..\Transavia.Application.Queries.Sql\Transavia.Application.Queries.Sql.csproj" />
     <ProjectReference Include="..\Transavia.Application.Queries\Transavia.Application.Queries.csproj" />
+    <ProjectReference Include="..\Transavia.Infrastructure.Cache.Redis\Transavia.Infrastructure.Cache.Redis.csproj" />
+    <ProjectReference Include="..\Transavia.Infrastructure.Cache\Transavia.Infrastructure.Cache.csproj" />
     <ProjectReference Include="..\Transavia.Infrastructure.Data\Transavia.Infrastructure.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Utilities\" />
   </ItemGroup>
 
 </Project>

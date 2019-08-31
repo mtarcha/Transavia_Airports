@@ -12,6 +12,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__TransaviaConnectionString=Server=sql;Database=TransaviaDB;User Id=sa;Password=123asdQ!     
+      - RedisHost=redis.cache
+      - RedisPort=6379
     ports:
       - "7777:80"
       
@@ -22,3 +24,16 @@ services:
       - SA_PASSWORD=123asdQ!
     ports:
       - "5433:1433"
+
+  redis.cache:
+    image: redis
+    ports:
+      - "9999:6379"
+
+  cache.web:    
+    image: rediscommander/redis-commander
+    restart: always
+    environment:
+      - REDIS_HOST=redis.cache
+    ports:
+      - "8081:8081"    

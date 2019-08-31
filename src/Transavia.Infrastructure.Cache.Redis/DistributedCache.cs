@@ -1,0 +1,35 @@
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using EasyCaching.Core;
+using StackExchange.Redis;
+
+namespace Transavia.Infrastructure.Cache.Redis
+{
+    public sealed class DistributedCache : IDistributedCache
+    {
+        private const string KeyPrefix = "Transavia_";
+        private readonly IEasyCachingProvider _provider;
+
+        public DistributedCache(IEasyCachingProvider provider)
+        {
+            _provider = provider;
+        }
+
+        public async Task<T> GetAsync<T>(string key, CancellationToken token = default)
+        {
+            var cacheItem = await _provider.GetAsync<T>(KeyPrefix + key);
+            return cacheItem.Value;
+        }
+
+        public async Task SetAsync<T>(string key, T value, TimeSpan absoluteExpiration, CancellationToken token = default)
+        {
+            await _provider.SetAsync(KeyPrefix + key, value, absoluteExpiration);
+        }
+
+        public async Task ClearCache(CancellationToken token = default)
+        {
+            await _provider.RemoveByPrefixAsync(KeyPrefix);
+        }
+    }
+}

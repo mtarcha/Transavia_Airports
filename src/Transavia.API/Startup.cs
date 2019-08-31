@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using EasyCaching.Core;
+using EasyCaching.Core.Configurations;
+using EasyCaching.Redis;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,7 +10,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using Transavia.API.Middlewares;
+using Transavia.API.Utilities;
 using Transavia.Application.Queries.Sql;
+using Transavia.Infrastructure.Cache;
+using Transavia.Infrastructure.Cache.Redis;
 using Transavia.Infrastructure.Data;
 
 namespace Transavia.API
@@ -67,6 +74,18 @@ namespace Transavia.API
                     });
                 });
 
+            var redisHost = Configuration["RedisHost"];
+            var redisPort = int.Parse(Configuration["RedisPort"]);
+            services.AddEasyCaching(options =>
+            {
+                options.UseRedis(config =>
+                    {
+                        config.DBConfig.Endpoints.Add(new ServerEndPoint(redisHost, redisPort));
+                    }, "transavia");
+            });
+
+            services.AddSingleton<IDistributedCache, DistributedCache>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -80,7 +99,9 @@ namespace Transavia.API
             {
                 app.UseHsts();
             }
-            
+
+            app.UseMiddleware<CachingMiddleware>();
+
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>

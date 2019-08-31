@@ -25,9 +25,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Infrastructure.Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Application.Queries.Sql", "src\Transavia.Application.Queries.Sql\Transavia.Application.Queries.Sql.csproj", "{3EA516E3-B9B9-4819-AE7C-708482B78205}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.DatabaseSeeder", "src\Transavia.DatabaseSeeder\Transavia.DatabaseSeeder.csproj", "{CBD1143D-7B7A-45A1-ADB2-21296EAE180D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.DatabaseSeeder", "src\Transavia.DatabaseSeeder\Transavia.DatabaseSeeder.csproj", "{CBD1143D-7B7A-45A1-ADB2-21296EAE180D}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{643600D6-E0E2-4288-BA3C-DACE7114B5C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.Infrastructure.Cache", "src\Transavia.Infrastructure.Cache\Transavia.Infrastructure.Cache.csproj", "{B28C94AB-707D-4D84-9214-13534C781F02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.Infrastructure.Cache.Redis", "src\Transavia.Infrastructure.Cache.Redis\Transavia.Infrastructure.Cache.Redis.csproj", "{90301A1A-F578-41E0-8261-95D0D69CCBA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,14 @@ Global
 		{643600D6-E0E2-4288-BA3C-DACE7114B5C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{643600D6-E0E2-4288-BA3C-DACE7114B5C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{643600D6-E0E2-4288-BA3C-DACE7114B5C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B28C94AB-707D-4D84-9214-13534C781F02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B28C94AB-707D-4D84-9214-13534C781F02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B28C94AB-707D-4D84-9214-13534C781F02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B28C94AB-707D-4D84-9214-13534C781F02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90301A1A-F578-41E0-8261-95D0D69CCBA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90301A1A-F578-41E0-8261-95D0D69CCBA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90301A1A-F578-41E0-8261-95D0D69CCBA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90301A1A-F578-41E0-8261-95D0D69CCBA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
