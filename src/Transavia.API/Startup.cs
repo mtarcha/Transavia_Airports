@@ -15,6 +15,7 @@ using Transavia.Application.Queries.Sql;
 using Transavia.Infrastructure.Cache;
 using Transavia.Infrastructure.Cache.Redis;
 using Transavia.Infrastructure.Data;
+using Transavia.Infrastructure.EventDispatching;
 
 namespace Transavia.API
 {
@@ -41,19 +42,16 @@ namespace Transavia.API
             services.AddSingleton(mapper);
 
             services.AddMediatR();
-            //services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             var connectionString = Configuration.GetConnectionString("TransaviaConnectionString");
             services.AddDbContext<TransaviaDbContext>(cfg =>
             {
                 cfg.UseSqlServer(connectionString);
             });
-            
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            services.AddSingleton<IDistributedCache, DistributedCache>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IEventDispatcher, EventDispatcher>();
             services.AddSingleton<IConnectionFactory>(new ConnectionFactory(connectionString));
-            services.AddMvc()
-                //.AddFluentValidation(x => x.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()))
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services
                 .AddSwaggerGen(c =>
@@ -82,8 +80,6 @@ namespace Transavia.API
                         config.DBConfig.Endpoints.Add(new ServerEndPoint(redisHost, redisPort));
                     }, "transavia");
             });
-
-            services.AddSingleton<IDistributedCache, DistributedCache>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

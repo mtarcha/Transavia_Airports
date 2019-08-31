@@ -3,21 +3,26 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Transavia.Infrastructure.Data.Entities;
+using Transavia.Infrastructure.EventDispatching;
 
 namespace Transavia.Infrastructure.Data.Repositories
 {
     public class RepositoryBase<TEntity> : IRepository<TEntity, Guid> where TEntity : Entity
     {
         private readonly TransaviaDbContext _ctx;
+        private readonly IEventDispatcher _eventDispatcher;
 
-        protected RepositoryBase(TransaviaDbContext ctx)
+        protected RepositoryBase(TransaviaDbContext ctx, IEventDispatcher eventDispatcher)
         {
             _ctx = ctx;
+            _eventDispatcher = eventDispatcher;
         }
 
         public async Task<TEntity> CreateAsync(TEntity entity, CancellationToken token)
         {
             await _ctx.AddAsync(entity, token);
+
+            _eventDispatcher.DispatchDeferred(new DatabaseUpdatedEvent());
 
             return entity;
         }
@@ -38,6 +43,8 @@ namespace Transavia.Infrastructure.Data.Repositories
         {
             _ctx.Set<TEntity>().Update(entity);
 
+            _eventDispatcher.DispatchDeferred(new DatabaseUpdatedEvent());
+
             return entity;
         }
 
@@ -45,6 +52,8 @@ namespace Transavia.Infrastructure.Data.Repositories
         {
             var entity = await GetByIdAsync(id, token);
             _ctx.Set<TEntity>().Remove(entity);
+
+            _eventDispatcher.DispatchDeferred(new DatabaseUpdatedEvent());
         }
     }
 }

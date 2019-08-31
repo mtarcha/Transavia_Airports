@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using Transavia.Infrastructure;
 using Transavia.Infrastructure.Data;
 using Utility.CommandLine;
 

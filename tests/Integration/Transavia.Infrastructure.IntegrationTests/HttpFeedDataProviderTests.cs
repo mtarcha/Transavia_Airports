@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using Transavia.Infrastructure.Data;
 
 namespace Transavia.Infrastructure.IntegrationTests
 {

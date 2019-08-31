@@ -1,22 +1,25 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Transavia.Infrastructure.Data.Repositories;
+using Transavia.Infrastructure.EventDispatching;
 
 namespace Transavia.Infrastructure.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly TransaviaDbContext _ctx;
+        private readonly IEventDispatcher _eventDispatcher;
 
-        public UnitOfWork(TransaviaDbContext ctx)
+        public UnitOfWork(TransaviaDbContext ctx, IEventDispatcher eventDispatcher)
         {
             _ctx = ctx;
-            AirportTypes = new AirportTypesRepository(ctx);
-            Statuses = new StatusesRepository(ctx);
-            Sizes = new SizesRepository(ctx);
-            Countries = new CountriesRepository(ctx);
-            Continents = new ContinentsRepository(ctx);
-            Airports = new AirportsRepository(ctx);
+            _eventDispatcher = eventDispatcher;
+            AirportTypes = new AirportTypesRepository(ctx, eventDispatcher);
+            Statuses = new StatusesRepository(ctx, eventDispatcher);
+            Sizes = new SizesRepository(ctx, eventDispatcher);
+            Countries = new CountriesRepository(ctx, eventDispatcher);
+            Continents = new ContinentsRepository(ctx, eventDispatcher);
+            Airports = new AirportsRepository(ctx, eventDispatcher);
         }
 
         public IAirportsRepository Airports { get; }
@@ -29,6 +32,7 @@ namespace Transavia.Infrastructure.Data
         public async Task SaveChanges(CancellationToken token)
         {
             await _ctx.SaveChangesAsync(token);
+            _eventDispatcher.RaiseDeferredEvents();
         }
     }
 }

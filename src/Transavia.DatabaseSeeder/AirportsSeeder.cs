@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Transavia.Infrastructure;
 using Transavia.Infrastructure.Data;
 using Transavia.Infrastructure.Data.Entities;
 
