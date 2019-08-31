@@ -1,0 +1,79 @@
+﻿@model Transavia.Web.MVC.ViewModels.AddAirportViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="row">
+    <div class="col-4 offset-4">
+        <form asp-action="AddAirport" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Iata" class="control-label"></label>
+                <input asp-for="Iata" class="form-control" />
+                <span asp-validation-for="Iata" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Lon" class="control-label"></label>
+                <input asp-for="Lon" class="form-control" />
+                <span asp-validation-for="Lon" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Lat" class="control-label"></label>
+                <input asp-for="Lat" class="form-control" />
+                <span asp-validation-for="Lat" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StatusId">Status</label>
+                <select asp-for="StatusId" class="form-control scrollable-menu">
+                    @foreach (var status in Model.SupportedStatuses)
+                    {
+                        <option value="@status.Id">@status.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CountryId">Country</label>
+                <select asp-for="CountryId" class="form-control scrollable-menu">
+                    @foreach (var country in Model.SupportedCountries)
+                    {
+                        <option value="@country.Id">@country.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TypeId">Type</label>
+                <select asp-for="TypeId" class="form-control scrollable-menu">
+                    @foreach (var type in Model.SupportedTypes)
+                    {
+                        <option value="@type.Id">@type.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SizeId">Size</label>
+                <select asp-for="SizeId" class="form-control scrollable-menu">
+                    @foreach (var size in Model.SupportedSizes)
+                    {
+                        <option value="@size.Id">@size.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-success btn-block" />
+            </div>
+            <br>
+        </form>
+    </div>
+</div>

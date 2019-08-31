@@ -9,6 +9,8 @@ namespace Transavia.Web.MVC.Utilities
         public AutoMapper()
         {
             CreateMap<Country, CountryViewModel>();
+
+            CreateMap<AddAirportViewModel, AddAirportModel>();
         }
     }
 }

@@ -18,7 +18,7 @@
                         }
                     </div>
                 </span>
-                <a class="btn btn-success" href=@Url.Action("Create", "Airports")>Add Airport</a>
+                <a class="btn btn-success" href=@Url.Action("AddAirport", "Airports")>Add Airport</a>
             </span>
         </h3>
     </p>
@@ -76,7 +76,6 @@ var pagination = @Model.Pagination;
                  {
                      <li class="page-item @TrySetActive(pagination.Pages[index - 1])">
                          @Html.ActionLink(index.ToString(), "Get", "Airports", new { country = @vm.SelectedCountry.Id, page = index }, new { @class="page-link" })
-                         @*<a class="page-link" href=@Url.Action("Index",  new { pattern = @vm.Pattern, page = @page.Index })>@{return page.Index;}</a>*@
                      </li>
                  }
             }

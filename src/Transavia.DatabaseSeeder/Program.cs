@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Microsoft.EntityFrameworkCore;
 using Transavia.Infrastructure.Data;
 using Utility.CommandLine;
@@ -7,6 +8,8 @@ namespace Transavia.DatabaseSeeder
 {
     class Program
     {
+        // todo: add logging
+
         [Argument('f', "feed", "http(s) feed to download airports data")]
         private static string Feed { get; set; }
 
@@ -15,6 +18,8 @@ namespace Transavia.DatabaseSeeder
 
         static void Main(string[] args)
         {
+            Console.WriteLine("Starting database seeding");
+
             Arguments.Populate();
 
             var optionsBuilder = new DbContextOptionsBuilder<TransaviaDbContext>();
@@ -29,6 +34,8 @@ namespace Transavia.DatabaseSeeder
                 var seeder = new AirportsSeeder(feed, dbContext);
                 seeder.SeedAsync(x => x.Country.Continent.Code == "EU", CancellationToken.None).Wait();
             }
+
+            Console.WriteLine("Done");
         }
         
         private static void ClearDatabae(TransaviaDbContext dbContext)

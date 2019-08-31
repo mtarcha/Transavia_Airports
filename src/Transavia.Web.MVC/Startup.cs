@@ -33,6 +33,9 @@ namespace Transavia.Web.MVC
             var apiUrl = _configuration["AirportsApiUrl"];
             services.AddTransient(x => RestClient.For<IAirportsClient>(apiUrl));
             services.AddTransient(x => RestClient.For<ICountriesClient>(apiUrl));
+            services.AddTransient(x => RestClient.For<IStatusesClient>(apiUrl));
+            services.AddTransient(x => RestClient.For<ISizesClient>(apiUrl));
+            services.AddTransient(x => RestClient.For<ITypesClient>(apiUrl));
             services.AddMvc();
         }
 

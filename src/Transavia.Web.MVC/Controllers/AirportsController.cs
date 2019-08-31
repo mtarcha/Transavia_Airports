@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Transavia.Web.MVC.Clients;
+using Transavia.Web.MVC.Models;
 using Transavia.Web.MVC.ViewModels;
 
 namespace Transavia.Web.MVC.Controllers
@@ -16,16 +18,28 @@ namespace Transavia.Web.MVC.Controllers
         private readonly IMapper _mapper;
         private readonly IAirportsClient _airportsClient;
         private readonly ICountriesClient _countriesClient;
+        private readonly IStatusesClient _statusesClient;
+        private readonly ITypesClient _typesClient;
+        private readonly ISizesClient _sizesClient;
 
-        public AirportsController(IMapper mapper, IAirportsClient airportsClient, ICountriesClient countriesClient)
+        public AirportsController(
+            IMapper mapper, 
+            IAirportsClient airportsClient, 
+            ICountriesClient countriesClient,
+            IStatusesClient statusesClient,
+            ITypesClient typesClient,
+            ISizesClient sizesClient)
         {
             _mapper = mapper;
             _airportsClient = airportsClient;
             _countriesClient = countriesClient;
+            _statusesClient = statusesClient;
+            _typesClient = typesClient;
+            _sizesClient = sizesClient;
         }
 
         [HttpGet]
-        public IActionResult Get(Guid? country = null, int page = 1)
+        public IActionResult Search(Guid? country = null, int page = 1)
         {
             if (page < 1)
             {
@@ -64,9 +78,33 @@ namespace Transavia.Web.MVC.Controllers
             return View(vm);
         }
 
-        [HttpPost]
-        public IActionResult Create()
+        [HttpGet]
+        public async  Task<IActionResult> AddAirport()
         {
+            var countries = _mapper.Map<IEnumerable<CountryViewModel>>(_countriesClient.GetSupportedCountries().Result.GetContent());
+            var statuses = await _statusesClient.GetSupportedStatuses();
+            var sizes = await _sizesClient.GetSupportedSizes();
+            var types = await _typesClient.GetSupportedTypes();
+
+            var vm = new AddAirportViewModel
+            {
+                SupportedCountries = countries,
+                SupportedStatuses = statuses.GetContent(),
+                SupportedSizes = sizes.GetContent(),
+                SupportedTypes = types.GetContent()
+            };
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddAirport(AddAirportViewModel vm)
+        {
+            var model = _mapper.Map<AddAirportModel>(vm);
+            var result = await _airportsClient.AddAirport(model);
+
+            var id = result.GetContent();
+
             return RedirectToAction("Get");
         }
     }

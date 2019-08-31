@@ -1,24 +1,19 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
-namespace Transavia.API.ViewModels
+namespace Transavia.Web.MVC.Models
 {
-    public class AddAirportViewModel
+    public class AddAirportModel
     {
-        [Required]
         public string Iata { get; set; }
 
         public string Name { get; set; }
 
-        [Required]
         public Guid CountryId { get; set; }
 
-        [Required]
         public Guid TypeId { get; set; }
 
         public Guid SizeId { get; set; }
 
-        [Required]
         public Guid StatusId { get; set; }
 
         public string Lon { get; set; }

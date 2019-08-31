@@ -9,5 +9,8 @@ namespace Transavia.Web.MVC.Clients
     {
         [Get("airports")]
         Task<Response<GetAirportsResult>> Get(Guid? country, int skipCount, int takeCount);
+
+        [Post("airports")]
+        Task<Response<Guid>> AddAirport([Body] AddAirportModel model);
     }
 }
