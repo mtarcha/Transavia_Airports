@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Transavia.Infrastructure.Data;
@@ -20,14 +21,6 @@ namespace Transavia.Infrastructure.IntegrationTests
                 JsonConvert.DeserializeObject<List<AirportData>>);
         }
 
-        [Test]
-        public void GetData_CanRetrieveMultipleAirports()
-        {
-            var airports = _httpFeedDataProvider.GetData(CancellationToken.None).Result.ToList();
-
-            Assert.That(airports.Count > 1);
-        }
-
         [TearDown]
         public void Teardown()
         {
@@ -35,25 +28,13 @@ namespace Transavia.Infrastructure.IntegrationTests
         }
 
         [Test]
-        public void GetData_CanRetrieveAirportsFromDifferentCountries()
+        public async Task GetData_AllAirportsDataRetrieved()
         {
-            var airports = _httpFeedDataProvider.GetData(CancellationToken.None).Result.ToList();
-
-            var countries = airports.Select(x => x.iso).Distinct();
-
-            Assert.That(countries.Count() > 1);
+            var airports =  await _httpFeedDataProvider.GetData(CancellationToken.None);
+            
+            Assert.That(airports.Count() == 6726);
         }
-
-        [Test]
-        public void GetData_CanRetrieveAirportsFromDifferentContinents()
-        {
-            var airports = _httpFeedDataProvider.GetData(CancellationToken.None).Result.ToList();
-
-            var continents = airports.Select(x => x.continent).Distinct();
-
-            Assert.That(continents.Count() > 1);
-        }
-
+        
         private class AirportData
         {
             public string iata { get; set; }

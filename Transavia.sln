@@ -33,7 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Infrastructure.Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Infrastructure", "src\Transavia.Infrastructure\Transavia.Infrastructure.csproj", "{27F53050-8B13-4ECA-871D-03463B48E7DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.Infrastructure.UnitTests", "tests\Unit\Transavia.Infrastructure.UnitTests\Transavia.Infrastructure.UnitTests.csproj", "{067F53BC-B3D1-47AE-BB1A-4B32509D007A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transavia.Infrastructure.UnitTests", "tests\Unit\Transavia.Infrastructure.UnitTests\Transavia.Infrastructure.UnitTests.csproj", "{067F53BC-B3D1-47AE-BB1A-4B32509D007A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Performance", "Performance", "{B133EF92-B0A5-4922-89FC-6A8A342344EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transavia.API.PerformanceTests", "tests\Performance\Transavia.API.PerformanceTests\Transavia.API.PerformanceTests.csproj", "{F085625C-59EF-4B4C-B230-A6D3C6835C62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +97,10 @@ Global
 		{067F53BC-B3D1-47AE-BB1A-4B32509D007A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{067F53BC-B3D1-47AE-BB1A-4B32509D007A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{067F53BC-B3D1-47AE-BB1A-4B32509D007A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F085625C-59EF-4B4C-B230-A6D3C6835C62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F085625C-59EF-4B4C-B230-A6D3C6835C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F085625C-59EF-4B4C-B230-A6D3C6835C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F085625C-59EF-4B4C-B230-A6D3C6835C62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +110,8 @@ Global
 		{170A6BA3-68C2-4F13-B20A-1E1205ADDE1B} = {2661B073-5C12-4388-B159-A257B5F3F43E}
 		{CA4DBF36-2632-46FE-95AD-CC6232F361ED} = {170A6BA3-68C2-4F13-B20A-1E1205ADDE1B}
 		{067F53BC-B3D1-47AE-BB1A-4B32509D007A} = {5D9E510C-2D12-4485-AE0F-B4C70F804A0B}
+		{B133EF92-B0A5-4922-89FC-6A8A342344EF} = {2661B073-5C12-4388-B159-A257B5F3F43E}
+		{F085625C-59EF-4B4C-B230-A6D3C6835C62} = {B133EF92-B0A5-4922-89FC-6A8A342344EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1BE138B5-27E8-400B-BA5D-B2D93CC8AF77}
