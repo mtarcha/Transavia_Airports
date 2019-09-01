@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,16 +31,18 @@ namespace Transavia.Web.MVC
             var mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-            var apiUrl = _configuration["AirportsApiUrl"];
-            services.AddTransient(x => RestClient.For<IAirportsClient>(apiUrl));
-            services.AddTransient(x => RestClient.For<ICountriesClient>(apiUrl));
-            services.AddTransient(x => RestClient.For<IStatusesClient>(apiUrl));
-            services.AddTransient(x => RestClient.For<ISizesClient>(apiUrl));
-            services.AddTransient(x => RestClient.For<ITypesClient>(apiUrl));
+            var apiUrl = _configuration["TransaviaApiUrl"];
+            services
+                .AddHttpClient("airport", c => { c.BaseAddress = new Uri(apiUrl); })
+                .AddTypedClient(c => RestClient.For<IAirportsClient>(c));
+
+            services
+                .AddHttpClient("countries", c => { c.BaseAddress = new Uri(apiUrl); })
+                .AddTypedClient(c => RestClient.For<ICountriesClient>(c));
+
             services.AddMvc();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

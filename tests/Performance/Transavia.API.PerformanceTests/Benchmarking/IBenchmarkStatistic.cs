@@ -7,7 +7,5 @@ namespace Transavia.API.PerformanceTests.Benchmarking
         int RunsPerSecond { get; }
 
         TimeSpan AverageExecutionTime { get; }
-
-        void EvaluateStatistics();
     }
 }

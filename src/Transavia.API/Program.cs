@@ -13,18 +13,18 @@ namespace Transavia.API
         {
             var host = CreateWebHostBuilder(args).Build();
 
-            EnsureDatabaseCreated(host).Wait();
+            EnsureDatabaseCreated(host);
 
             host.Run();
         }
 
-        private static async Task EnsureDatabaseCreated(IWebHost host)
+        private static void EnsureDatabaseCreated(IWebHost host)
         {
             var scopeFactory = host.Services.GetService<IServiceScopeFactory>();
             using (var scope = scopeFactory.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetService<TransaviaDbContext>();
-                await dbContext.Database.EnsureCreatedAsync(CancellationToken.None);
+                dbContext.Database.EnsureCreated();
             }
         }
 

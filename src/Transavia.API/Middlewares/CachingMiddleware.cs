@@ -8,7 +8,7 @@ using Transavia.Infrastructure.Cache;
 
 namespace Transavia.API.Middlewares
 {
-    public class CachingMiddleware
+    public sealed class CachingMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly IDistributedCache _distributedCache;
@@ -28,6 +28,12 @@ namespace Transavia.API.Middlewares
 
                 if (cached != null)
                 {
+                    context.Response.OnStarting(state => {
+                        var httpContext = (HttpContext)state;
+                        httpContext.Response.Headers.Add("from-database", new StringValues("false"));
+                        return Task.FromResult(0);
+                    }, context);
+
                     await context.Response.Body.WriteAsync(cached, 0, cached.Length);
                 }
                 else
@@ -42,7 +48,7 @@ namespace Transavia.API.Middlewares
 
                             context.Response.OnStarting(state => {
                                 var httpContext = (HttpContext)state;
-                                httpContext.Response.Headers.Add("from-database", new StringValues());
+                                httpContext.Response.Headers.Add("from-database", new StringValues("true"));
                                 return Task.FromResult(0);
                             }, context);
 

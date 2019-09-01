@@ -32,7 +32,7 @@ namespace Transavia.Infrastructure.IntegrationTests
         {
             var airports =  await _httpFeedDataProvider.GetData(CancellationToken.None);
             
-            Assert.That(airports.Count() == 6726);
+            Assert.That(airports.Count(), Is.EqualTo(6726));
         }
         
         private class AirportData

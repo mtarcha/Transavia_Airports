@@ -6,7 +6,7 @@ using Transavia.Application.Queries.GetSupportedCountries;
 
 namespace Transavia.Application.Queries.Sql
 {
-    public class GetSupportedAirportCountriesQueryHandler : IGetSupportedAirportCountriesQueryHandler
+    public sealed class GetSupportedAirportCountriesQueryHandler : IGetSupportedAirportCountriesQueryHandler
     {
         private readonly IConnectionFactory _connectionFactory;
 

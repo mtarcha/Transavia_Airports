@@ -1,6 +1,6 @@
 ﻿namespace Transavia.DatabaseSeeder
 {
-    public class AirportData
+    public sealed class AirportData
     {
         public string iata { get; set; }
         public string lon { get; set; }

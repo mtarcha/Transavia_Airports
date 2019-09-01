@@ -19,7 +19,7 @@ using Transavia.Infrastructure.EventDispatching;
 
 namespace Transavia.API
 {
-    public class Startup
+    public sealed class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -78,7 +78,7 @@ namespace Transavia.API
                 options.UseRedis(config =>
                     {
                         config.DBConfig.Endpoints.Add(new ServerEndPoint(redisHost, redisPort));
-                    }, "transavia");
+                    }, "transavia.api");
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -95,6 +95,7 @@ namespace Transavia.API
                 app.UseHsts();
             }
 
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
             app.UseMiddleware<CachingMiddleware>();
 
             app.UseMvc();

@@ -6,7 +6,7 @@ using Transavia.Application.Queries.GetSupportedAirportSizes;
 
 namespace Transavia.Application.Queries.Sql
 {
-    public class GetSupportedAirportSizesQueryHandler : IGetSupportedAirportSizesQueryHandler
+    public sealed class GetSupportedAirportSizesQueryHandler : IGetSupportedAirportSizesQueryHandler
     {
         private readonly IConnectionFactory _connectionFactory;
 

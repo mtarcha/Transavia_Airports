@@ -33,12 +33,16 @@ Task("Run-Services")
 });
 
 Task("Run-DBSeeder")
-	.IsDependentOn("Build-DBSeeder")
-	.IsDependentOn("Run-Services")
+	.IsDependentOn("Build-DBSeeder")	
     .Does(() =>
 {
 	DotNetCoreRun("./src/Transavia.DatabaseSeeder/Transavia.DatabaseSeeder.csproj", "-c 'Data Source=.,5433;Initial Catalog=TransaviaDB;User ID=sa;Password=123asdQ!' -f https://raw.githubusercontent.com/jbrooksuk/JSON-Airports/master/airports.json");	
 });
+
+Task("Run")
+	.IsDependentOn("Run-DBSeeder")
+	.IsDependentOn("Run-Services")
+    .Does(() => {});
 
 Task("Build-PerformanceTests")	
     .Does(() =>

@@ -2,7 +2,7 @@
 
 namespace Transavia.Infrastructure.Data
 {
-    public class DatabaseUpdatedEvent : IEvent
+    public sealed class DatabaseUpdatedEvent : IEvent
     {
     }
 }

@@ -3,8 +3,7 @@ using MediatR;
 
 namespace Transavia.Application.Queries.GetSupportedAirportTypes
 {
-    public class GetSupportedAirportTypesQuery : IRequest<IEnumerable<AirportType>>
+    public sealed class GetSupportedAirportTypesQuery : IRequest<IEnumerable<AirportType>>
     {
-        
     }
 }

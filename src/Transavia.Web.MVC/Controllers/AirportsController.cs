@@ -18,37 +18,24 @@ namespace Transavia.Web.MVC.Controllers
         private readonly IMapper _mapper;
         private readonly IAirportsClient _airportsClient;
         private readonly ICountriesClient _countriesClient;
-        private readonly IStatusesClient _statusesClient;
-        private readonly ITypesClient _typesClient;
-        private readonly ISizesClient _sizesClient;
-
-        public AirportsController(
-            IMapper mapper, 
-            IAirportsClient airportsClient, 
-            ICountriesClient countriesClient,
-            IStatusesClient statusesClient,
-            ITypesClient typesClient,
-            ISizesClient sizesClient)
+      
+        public AirportsController(IMapper mapper, IAirportsClient airportsClient, ICountriesClient countriesClient)
         {
             _mapper = mapper;
             _airportsClient = airportsClient;
             _countriesClient = countriesClient;
-            _statusesClient = statusesClient;
-            _typesClient = typesClient;
-            _sizesClient = sizesClient;
         }
 
         [HttpGet]
-        public IActionResult Search(Guid? country = null, int page = 1)
+        public async Task<IActionResult> Search(Guid? country = null, int page = 1)
         {
             if (page < 1)
             {
                 return BadRequest($"Invalid page '{page}'! Should be 1 or more.");
             }
 
-            var airportsResult = _airportsClient.Get(country, (page - 1) * AirportsOnPage, AirportsOnPage).Result.GetContent();
-
-            var totalPages = (int) Math.Ceiling((double) airportsResult.TotalFound / AirportsOnPage);
+            var airportsResult = await _airportsClient.Get(country, (page - 1) * AirportsOnPage, AirportsOnPage);
+            var totalPages = (int) Math.Ceiling((double)airportsResult.TotalFound / AirportsOnPage);
 
             foreach (var airport in airportsResult.Airports)
             {
@@ -63,7 +50,7 @@ namespace Transavia.Web.MVC.Controllers
                 }
             }
 
-            var supportedCountries = _mapper.Map<IEnumerable<CountryViewModel>>(_countriesClient.GetSupportedCountries().Result.GetContent()).ToList();
+            var supportedCountries = _mapper.Map<IEnumerable<CountryViewModel>>(await _countriesClient.GetSupportedCountries()).ToList();
             supportedCountries.Insert(0, new CountryViewModel {Name = "All"});
 
             var vm = new SearchAirportsViewModel
@@ -79,19 +66,21 @@ namespace Transavia.Web.MVC.Controllers
         }
 
         [HttpGet]
-        public async  Task<IActionResult> AddAirport()
+        public async Task<IActionResult> AddAirport()
         {
-            var countries = _mapper.Map<IEnumerable<CountryViewModel>>(_countriesClient.GetSupportedCountries().Result.GetContent());
-            var statuses = await _statusesClient.GetSupportedStatuses();
-            var sizes = await _sizesClient.GetSupportedSizes();
-            var types = await _typesClient.GetSupportedTypes();
+            var countries = _mapper.Map<IEnumerable<CountryViewModel>>(await _countriesClient.GetSupportedCountries());
+            var statuses = _airportsClient.GetSupportedStatuses();
+            var sizes = _airportsClient.GetSupportedSizes();
+            var types = _airportsClient.GetSupportedTypes();
+
+            await Task.WhenAll(statuses, sizes, types);
 
             var vm = new AddAirportViewModel
             {
                 SupportedCountries = countries,
-                SupportedStatuses = statuses.GetContent(),
-                SupportedSizes = sizes.GetContent(),
-                SupportedTypes = types.GetContent()
+                SupportedStatuses = statuses.Result,
+                SupportedSizes = sizes.Result,
+                SupportedTypes = types.Result
             };
 
             return View(vm);
@@ -101,10 +90,8 @@ namespace Transavia.Web.MVC.Controllers
         public async Task<IActionResult> AddAirport(AddAirportViewModel vm)
         {
             var model = _mapper.Map<AddAirportModel>(vm);
-            var result = await _airportsClient.AddAirport(model);
-
-            var id = result.GetContent();
-
+            await _airportsClient.AddAirport(model);
+            
             return RedirectToAction("Search");
         }
     }

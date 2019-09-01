@@ -2,7 +2,7 @@
 
 namespace Transavia.Web.MVC.Models
 {
-    public class GetAirportsResult
+    public sealed class GetAirportsResult
     {
         public int TotalFound { get; set; }
         

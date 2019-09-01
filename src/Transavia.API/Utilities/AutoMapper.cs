@@ -4,7 +4,7 @@ using Transavia.Application.Commands.AddAirport;
 
 namespace Transavia.API.Utilities
 {
-    public class AutoMapper : Profile
+    public sealed class AutoMapper : Profile
     {
         public AutoMapper()
         {

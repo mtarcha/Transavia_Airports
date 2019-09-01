@@ -2,7 +2,7 @@
 
 namespace Transavia.Web.MVC.Models
 {
-    public class Country
+    public sealed class Country
     {
         public Guid Id { get; set; }
         

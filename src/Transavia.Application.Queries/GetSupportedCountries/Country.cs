@@ -2,7 +2,7 @@
 
 namespace Transavia.Application.Queries.GetSupportedCountries
 {
-    public class Country
+    public sealed class Country
     {
         public Guid Id { get; set; }
         

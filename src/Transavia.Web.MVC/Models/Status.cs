@@ -2,7 +2,7 @@
 
 namespace Transavia.Web.MVC.Models
 {
-    public class Status
+    public sealed class Status
     {
         public Guid Id { get; set; }
 

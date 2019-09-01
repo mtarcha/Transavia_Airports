@@ -4,7 +4,7 @@ services:
   transavia.web.mvc:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development   
-      - AirportsApiUrl=http://transavia.api/api/
+      - TransaviaApiUrl=http://transavia.api/api/
     ports:
       - "8888:80"    
     depends_on:

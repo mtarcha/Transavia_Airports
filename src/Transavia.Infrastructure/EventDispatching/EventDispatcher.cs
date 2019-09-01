@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Transavia.Infrastructure.EventDispatching
 {
-    public class EventDispatcher : IEventDispatcher
+    public sealed class EventDispatcher : IEventDispatcher
     {
         private readonly IMediator _mediator;       
         private readonly ConcurrentQueue<IEvent> _deferredEvents;

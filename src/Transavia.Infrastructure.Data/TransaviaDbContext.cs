@@ -3,7 +3,7 @@ using Transavia.Infrastructure.Data.Entities;
 
 namespace Transavia.Infrastructure.Data
 {
-    public class TransaviaDbContext : DbContext
+    public sealed class TransaviaDbContext : DbContext
     {
         public TransaviaDbContext(DbContextOptions options) : base(options)
         {

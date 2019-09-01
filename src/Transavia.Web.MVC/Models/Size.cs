@@ -2,7 +2,7 @@
 
 namespace Transavia.Web.MVC.Models
 {
-    public class Size
+    public sealed class Size
     {
         public Guid Id { get; set; }
 

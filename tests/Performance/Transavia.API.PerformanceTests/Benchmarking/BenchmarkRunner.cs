@@ -36,6 +36,8 @@ namespace Transavia.API.PerformanceTests.Benchmarking
                 },
                 x => aggregatedStatistic.Aggregate(x.Statistic));
 
+            aggregatedStatistic.EvaluateStatistics();
+
             return aggregatedStatistic;
         }
 

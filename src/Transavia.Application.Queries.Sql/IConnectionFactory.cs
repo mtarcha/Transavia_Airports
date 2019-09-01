@@ -6,19 +6,4 @@ namespace Transavia.Application.Queries.Sql
     {
         SqlConnection Create();
     }
-
-    public sealed class ConnectionFactory : IConnectionFactory
-    {
-        private readonly string _connectionString;
-
-        public ConnectionFactory(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
-        public SqlConnection Create()
-        {
-            return new SqlConnection(_connectionString);
-        }
-    }
 }

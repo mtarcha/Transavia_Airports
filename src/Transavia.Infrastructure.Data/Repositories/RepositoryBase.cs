@@ -39,13 +39,16 @@ namespace Transavia.Infrastructure.Data.Repositories
             return entity;
         }
 
-        public async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken token)
+        public Task<TEntity> UpdateAsync(TEntity entity, CancellationToken token)
         {
-            _ctx.Set<TEntity>().Update(entity);
+            return Task.Run(() =>
+            {
+                _ctx.Set<TEntity>().Update(entity);
 
-            _eventDispatcher.DispatchDeferred(new DatabaseUpdatedEvent());
+                _eventDispatcher.DispatchDeferred(new DatabaseUpdatedEvent());
 
-            return entity;
+                return entity;
+            }, token);
         }
 
         public async Task DeleteAsync(Guid id, CancellationToken token)

@@ -6,7 +6,7 @@ using Transavia.Application.Queries.GetSupportedAirportStatuses;
 
 namespace Transavia.Application.Queries.Sql
 {
-    public class GetSupportedAirportStatusesQueryHandler : IGetSupportedAirportStatusesQueryHandler
+    public sealed class GetSupportedAirportStatusesQueryHandler : IGetSupportedAirportStatusesQueryHandler
     {
         private readonly IConnectionFactory _connectionFactory;
 

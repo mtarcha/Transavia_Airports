@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Transavia.Application.Commands.AddAirport
 {
-    public class AddAirportCommand : IRequest<AddAirportResult>
+    public sealed class AddAirportCommand : IRequest<AddAirportResult>
     {
         public string Iata { get; set; }
 

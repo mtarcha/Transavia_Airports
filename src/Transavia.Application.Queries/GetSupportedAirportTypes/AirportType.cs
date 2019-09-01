@@ -2,7 +2,7 @@
 
 namespace Transavia.Application.Queries.GetSupportedAirportTypes
 {
-    public class AirportType
+    public sealed class AirportType
     {
         public Guid Id { get; set; }
 

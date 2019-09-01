@@ -3,8 +3,7 @@ using MediatR;
 
 namespace Transavia.Application.Queries.GetSupportedCountries
 {
-    public class GetSupportedCountriesQuery : IRequest<IEnumerable<Country>>
+    public sealed class GetSupportedCountriesQuery : IRequest<IEnumerable<Country>>
     {
-        
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Transavia.Infrastructure.Data
 {
-    public sealed class HttpFeedDataProvider<TData> : IDisposable
+    public sealed class HttpFeedDataProvider<TData> : IDataProvider<TData>, IDisposable
     {
         private readonly string _uri;
         private readonly Func<string, IEnumerable<TData>> _deserialize;

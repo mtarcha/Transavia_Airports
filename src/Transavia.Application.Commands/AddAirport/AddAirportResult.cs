@@ -2,7 +2,7 @@
 
 namespace Transavia.Application.Commands.AddAirport
 {
-    public class AddAirportResult
+    public sealed class AddAirportResult
     {
         public AddAirportResult(Guid createdAirportId)
         {

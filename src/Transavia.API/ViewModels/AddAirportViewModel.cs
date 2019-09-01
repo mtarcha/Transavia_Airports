@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Transavia.API.ViewModels
 {
-    public class AddAirportViewModel
+    public sealed class AddAirportViewModel
     {
         [Required]
         public string Iata { get; set; }

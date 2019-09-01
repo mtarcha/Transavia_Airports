@@ -10,8 +10,6 @@ namespace Transavia.DatabaseSeeder
 {
     class Program
     {
-        // todo: add logging
-
         [Argument('f', "feed", "http(s) feed to download airports data")]
         private static string Feed { get; set; }
 

@@ -10,9 +10,9 @@ namespace Transavia.Infrastructure.Data
 
         IAirportTypesRepository AirportTypes { get; }
 
-        IStatusesRepository Statuses { get; }
+        IAirportStatusesRepository AirportStatuses { get; }
 
-        ISizesRepository Sizes { get; }
+        IAirportSizesRepository AirportSizes { get; }
 
         ICountriesRepository Countries { get; }
 

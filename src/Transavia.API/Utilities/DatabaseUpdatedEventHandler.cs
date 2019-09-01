@@ -6,7 +6,7 @@ using Transavia.Infrastructure.Data;
 
 namespace Transavia.API.Utilities
 {
-    public class DatabaseUpdatedEventHandler : INotificationHandler<DatabaseUpdatedEvent>
+    public sealed class DatabaseUpdatedEventHandler : INotificationHandler<DatabaseUpdatedEvent>
     {
         private readonly IDistributedCache _distributedCache;
 

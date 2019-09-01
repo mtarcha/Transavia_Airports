@@ -2,7 +2,7 @@
 
 namespace Transavia.Application.Queries.GetSupportedAirportStatuses
 {
-    public class Status
+    public sealed class Status
     {
         public Guid Id { get; set; }
 

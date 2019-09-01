@@ -8,7 +8,7 @@ namespace Transavia.API.Controllers
 {
     [ApiController]
     [Route("api/countries")]
-    public class CountriesController : ControllerBase
+    public sealed class CountriesController : ControllerBase
     {
         private readonly IMediator _mediator;
 

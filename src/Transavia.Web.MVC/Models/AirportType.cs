@@ -2,7 +2,7 @@
 
 namespace Transavia.Web.MVC.Models
 {
-    public class AirportType
+    public sealed class AirportType
     {
         public Guid Id { get; set; }
 

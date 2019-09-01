@@ -5,7 +5,7 @@ using Transavia.Infrastructure.EventDispatching;
 
 namespace Transavia.Infrastructure.Data
 {
-    public class UnitOfWork : IUnitOfWork
+    public sealed class UnitOfWork : IUnitOfWork
     {
         private readonly TransaviaDbContext _ctx;
         private readonly IEventDispatcher _eventDispatcher;
@@ -15,8 +15,8 @@ namespace Transavia.Infrastructure.Data
             _ctx = ctx;
             _eventDispatcher = eventDispatcher;
             AirportTypes = new AirportTypesRepository(ctx, eventDispatcher);
-            Statuses = new StatusesRepository(ctx, eventDispatcher);
-            Sizes = new SizesRepository(ctx, eventDispatcher);
+            AirportStatuses = new AirportStatusesRepository(ctx, eventDispatcher);
+            AirportSizes = new AirportSizesRepository(ctx, eventDispatcher);
             Countries = new CountriesRepository(ctx, eventDispatcher);
             Continents = new ContinentsRepository(ctx, eventDispatcher);
             Airports = new AirportsRepository(ctx, eventDispatcher);
@@ -24,8 +24,8 @@ namespace Transavia.Infrastructure.Data
 
         public IAirportsRepository Airports { get; }
         public IAirportTypesRepository AirportTypes { get; }
-        public IStatusesRepository Statuses { get; }
-        public ISizesRepository Sizes { get; }
+        public IAirportStatusesRepository AirportStatuses { get; }
+        public IAirportSizesRepository AirportSizes { get; }
         public ICountriesRepository Countries { get; }
         public IContinentsRepository Continents { get; }
 

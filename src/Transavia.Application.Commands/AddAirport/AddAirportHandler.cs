@@ -7,7 +7,7 @@ using Transavia.Infrastructure.Data.Entities;
 
 namespace Transavia.Application.Commands.AddAirport
 {
-    public class AddAirportHandler : IRequestHandler<AddAirportCommand, AddAirportResult>
+    public sealed class AddAirportHandler : IRequestHandler<AddAirportCommand, AddAirportResult>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -20,8 +20,8 @@ namespace Transavia.Application.Commands.AddAirport
         {
             var country = await _unitOfWork.Countries.GetByIdAsync(request.CountryId, cancellationToken);
             var airportType = await _unitOfWork.AirportTypes.GetByIdAsync(request.TypeId, cancellationToken);
-            var size = await _unitOfWork.Sizes.GetByIdAsync(request.SizeId, cancellationToken);
-            var status = await _unitOfWork.Statuses.GetByIdAsync(request.StatusId, cancellationToken);
+            var size = await _unitOfWork.AirportSizes.GetByIdAsync(request.SizeId, cancellationToken);
+            var status = await _unitOfWork.AirportStatuses.GetByIdAsync(request.StatusId, cancellationToken);
 
             var airport = new AirportEntity
             {

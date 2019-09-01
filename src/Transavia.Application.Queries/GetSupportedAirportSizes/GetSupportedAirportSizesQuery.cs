@@ -3,8 +3,7 @@ using MediatR;
 
 namespace Transavia.Application.Queries.GetSupportedAirportSizes
 {
-    public class GetSupportedAirportSizesQuery : IRequest<IEnumerable<Size>>
+    public sealed class GetSupportedAirportSizesQuery : IRequest<IEnumerable<Size>>
     {
-        
     }
 }

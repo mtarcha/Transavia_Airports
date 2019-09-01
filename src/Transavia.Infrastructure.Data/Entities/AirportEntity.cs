@@ -12,7 +12,6 @@
         
         public SizeEntity Size { get; set; }
 
-        // todo: looks like it has dependency on AirportTypeEntity. Investigate it, and if so - refactor this.
         public StatusEntity Status { get; set; }
 
         // todo: investigate what values can be here and what does it mean.

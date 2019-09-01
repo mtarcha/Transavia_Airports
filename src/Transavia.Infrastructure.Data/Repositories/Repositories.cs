@@ -24,16 +24,16 @@ namespace Transavia.Infrastructure.Data.Repositories
         }
     }
 
-    public sealed class SizesRepository : RepositoryBase<SizeEntity>, ISizesRepository
+    public sealed class AirportSizesRepository : RepositoryBase<SizeEntity>, IAirportSizesRepository
     {
-        public SizesRepository(TransaviaDbContext ctx, IEventDispatcher eventDispatcher) : base(ctx, eventDispatcher)
+        public AirportSizesRepository(TransaviaDbContext ctx, IEventDispatcher eventDispatcher) : base(ctx, eventDispatcher)
         {
         }
     }
 
-    public sealed class StatusesRepository : RepositoryBase<StatusEntity>, IStatusesRepository
+    public sealed class AirportStatusesRepository : RepositoryBase<StatusEntity>, IAirportStatusesRepository
     {
-        public StatusesRepository(TransaviaDbContext ctx, IEventDispatcher eventDispatcher) : base(ctx, eventDispatcher)
+        public AirportStatusesRepository(TransaviaDbContext ctx, IEventDispatcher eventDispatcher) : base(ctx, eventDispatcher)
         {
         }
     }

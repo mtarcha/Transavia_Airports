@@ -2,7 +2,7 @@
 
 namespace Transavia.Application.Queries.GetAirports
 {
-    public class GetAirportsResult
+    public sealed class GetAirportsResult
     {
         public int TotalFound{ get; set; }
 

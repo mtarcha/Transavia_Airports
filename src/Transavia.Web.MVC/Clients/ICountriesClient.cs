@@ -8,6 +8,6 @@ namespace Transavia.Web.MVC.Clients
     public interface ICountriesClient
     {
         [Get("countries")]
-        Task<Response<IEnumerable<Country>>> GetSupportedCountries();
+        Task<IEnumerable<Country>> GetSupportedCountries();
     }
 }

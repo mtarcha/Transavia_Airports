@@ -28,11 +28,11 @@ namespace Transavia.Infrastructure.Data.Repositories
     {
     }
 
-    public interface ISizesRepository : IRepository<SizeEntity, Guid>
+    public interface IAirportSizesRepository : IRepository<SizeEntity, Guid>
     {
     }
 
-    public interface IStatusesRepository : IRepository<StatusEntity, Guid>
+    public interface IAirportStatusesRepository : IRepository<StatusEntity, Guid>
     {
     }
 
