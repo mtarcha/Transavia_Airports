@@ -7,6 +7,8 @@ services:
       - AirportsApiUrl=http://transavia.api/api/
     ports:
       - "8888:80"    
+    depends_on:
+      - transavia.api
       
   transavia.api:
     environment:
@@ -16,6 +18,10 @@ services:
       - RedisPort=6379
     ports:
       - "7777:80"
+    depends_on:
+      - sql
+      - redis.cache
+      - cache.web
       
   sql:
     image: microsoft/mssql-server-linux:latest

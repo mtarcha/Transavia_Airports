@@ -27,7 +27,7 @@ namespace Transavia.API.PerformanceTests.Benchmarking
         public void EvaluateStatistics()
         {
             RunsPerSecond = _executions.Count / _totalExecutionTime.Seconds;
-            AverageExecutionTime = TimeSpan.FromMilliseconds(_executions.Select(x => x.Milliseconds).Average());
+            AverageExecutionTime = TimeSpan.FromTicks((long)_executions.Select(x => x.Ticks).Average());
         }
     }
 }

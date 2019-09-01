@@ -19,12 +19,15 @@ namespace Transavia.API.PerformanceTests
         [Test]
         public void GetAirportsTest()
         {
-            var statistics = BenchmarkRunner.Run(_apiClient.GetAsync("").Wait, 10, 4);
+            var statistics = BenchmarkRunner.Run(
+                () => _apiClient.GetAsync("http://localhost:7777/api/airports?skipCount=0&takeCount=30").Wait(), 
+                10, 
+                4);
 
             statistics.EvaluateStatistics();
 
-            Assert.That(statistics.AverageExecutionTime, Is.LessThanOrEqualTo(TimeSpan.FromMilliseconds(1)));
-            Assert.That(statistics.RunsPerSecond, Is.GreaterThanOrEqualTo(10000));
+            Assert.That(statistics.AverageExecutionTime, Is.LessThanOrEqualTo(TimeSpan.FromMilliseconds(3)));
+            Assert.That(statistics.RunsPerSecond, Is.GreaterThanOrEqualTo(1500));
         }
     }
 }

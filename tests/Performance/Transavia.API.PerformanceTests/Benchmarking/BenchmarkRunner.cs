@@ -15,17 +15,17 @@ namespace Transavia.API.PerformanceTests.Benchmarking
             Parallel.For(
                 0,
                 maxDegreeOfParallelism,
-                new ParallelOptions { MaxDegreeOfParallelism = 1 },
+                new ParallelOptions { MaxDegreeOfParallelism = maxDegreeOfParallelism },
                 () => new InitialState(TimeSpan.FromSeconds(10)),
                 (i, y, state) =>
                 {
-                    var totalExectutionTime = state.TotalExecutionTime;
+                    var totalExecutionTime = state.TotalExecutionTime;
                     var statistic = state.Statistic;
                     var totalCounter = state.TotalExecutionTimeStopwatch;
                     var testCounter = state.InvokeExecutionTimeStopwatch;
 
                     totalCounter.Start();
-                    while (totalCounter.ElapsedMilliseconds < totalExectutionTime.Milliseconds)
+                    while (totalCounter.ElapsedTicks < totalExecutionTime.Ticks)
                     {
                         testCounter.Restart();
                         test();
