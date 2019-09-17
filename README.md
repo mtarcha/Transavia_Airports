@@ -25,7 +25,12 @@ Transavia technical assessment
 * Redis GUI is accesable on http://localhost:8081/
 
 ## Seed DB
-Before running it be sure that services are running. Execute **Run** first.
+Before running it be sure that services are running. 
+Execute 
+```
+     .\build.ps1 -Target Run-Services
+```
+first.
 * Next command will seed database by data provided by http feed.
 ```
      .\build.ps1 -Target Run-DBSeeder
@@ -67,5 +72,5 @@ The test command will run application, seed DB, build performance tests and run 
 
 # License
 
-Suit Shop is open source software, licensed under the terms of MIT license. 
+This is open source software, licensed under the terms of MIT license. 
 See [LICENSE](LICENSE) for details.

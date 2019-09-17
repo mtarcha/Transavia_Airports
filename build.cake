@@ -40,8 +40,8 @@ Task("Run-DBSeeder")
 });
 
 Task("Run")
-	.IsDependentOn("Run-DBSeeder")
 	.IsDependentOn("Run-Services")
+	.IsDependentOn("Run-DBSeeder")	
     .Does(() => {});
 
 Task("Build-PerformanceTests")	
